@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#071f18">
+<title>Bon Abdo Basha | بن عبدو باشا - Coffee Shop</title>
+<meta name="description" content="بن عبدو باشا — قهوة تركي، آيس كوفي، فرابيه وديزرت طازة. اطلب أونلاين وابعتها واتساب.">
+<meta property="og:title" content="بن عبدو باشا — COFFEE SHOP">
+<meta property="og:description" content="قهوة تركي على الرمل، آيس سبانش لاتيه، وفرابيه الباشا. اطلب دلوقتي.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700;800;900&family=Playfair+Display:wght@500;700;900&family=Outfit:wght@300;400;600;700;800&family=Rakkas&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="hero-journey.css">
+</head>
+<body>
+
+<div id="preloader">
+  <div class="pl-stage">
+    <div class="pl-glow" aria-hidden="true"></div>
+    <div class="pl-steam" aria-hidden="true"><i></i><i></i><i></i></div>
+    <img class="pl-cup-img" src="./cafe-hero/cupCoffee-tight.png" alt="فنجان قهوة بن عبدو باشا">
+  </div>
+  <p class="pl-name">بن عبدو باشا <span>COFFEE SHOP</span></p>
+  <div class="pl-bar"><i></i></div>
+</div>
+
+<header id="navbar">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">B</div>
+      <div class="logo-text"><strong>BON ABDO BASHA</strong><span>COFFEE SHOP • بن عبدو باشا</span></div>
+    </div>
+    <nav class="links">
+      <a href="#hero-section" class="active">الرئيسية</a>
+      <a href="#menu">المنيو</a>
+      <a href="#about">حكايتنا</a>
+      <a href="#gallery">الأجواء</a>
+      <a href="#visit">فروعنا</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="cartBtn" class="btn-gold small"><i class="fa-solid fa-basket-shopping"></i> <span id="cartCount">0</span></button>
+      <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" class="btn-gold small hide-mobile"><i class="fa-brands fa-whatsapp"></i> اطلب الآن</a>
+      <button id="burger" aria-label="القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div id="mobileMenu"><a href="#hero-section">الرئيسية</a><a href="#menu">المنيو</a><a href="#about">حكايتنا</a><a href="#gallery">الأجواء</a><a href="#visit">فروعنا</a></div>
+</header>
+
+<!-- ============ HERO JOURNEY — 4 مشاهد بتبني بالأسكرول ============
+     1) قهوة تركي بيتعمل  2) طبقات الكيك بتتركب  3) آيس كوفي بيتصب  4) المنيو -->
+<section id="hero-section" class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="journey" id="journey">
+    <!-- أفلام أجواء (بتشتغل لما مشهدها يبقى نشط) -->
+    <div class="j-film" aria-hidden="true"><video data-film="iced" src="./hero-iced-splash.mp4" muted loop playsinline preload="none"></video></div>
+    <div class="j-scrim" aria-hidden="true"></div>
+
+    <!-- واجهة التقدم -->
+    <div class="j-topbar" aria-hidden="true"><i id="jFill"></i></div>
+    <div class="j-chip" aria-hidden="true"><span id="jStageName">القهوة التركي</span> · <b id="jPct">0%</b></div>
+
+    <!-- ===== المشهد 1: قهوة التركي — الفيديو مالي الشاشة زي الأصلي + الكلام في منطقته ===== -->
+    <div class="j-stage s1 live" data-s="1">
+      <video class="j-lead-film" aria-hidden="true" data-film="turkish" src="./hero-turkish-coffee.mp4" muted loop playsinline preload="auto"></video>
+      <div class="j-copy">
+        <span class="hv-badge">★ على الأصول</span>
+        <h1 class="jt-title">قهوة تركي <em>على الرمل</em></h1>
+        <p>بنحمص البن كل يوم صبح، ونولّعه بالرمل على نار هادية لحد ما الرغوة تقوم — اسكرول وشوف القهوة بتتندلق قدامك.</p>
+        <div class="j-chip-product">
+          <div class="j-prod"><strong>قهوة تركي باشا</strong><span>25 EGP • ★ 4.8</span></div>
+          <button class="add" data-name="قهوة تركي" data-price="25" aria-label="ضيف قهوة تركي">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== المشهد 2: طبقات الكيك ===== -->
+    <div class="j-stage s2" data-s="2">
+      <div class="j-copy">
+        <span class="hv-badge">★ ديزرت البيت</span>
+        <h2 class="jt-title">فادج <em>طبقة طبقة</em></h2>
+        <p>قاعدة فادج سخنة، جاناش مخفوق، وترافل متلفّف — الطبقات بتركب قدامك بالترتيب لحد ما الكيكة تكتمل.</p>
+        <div class="j-chip-product">
+          <div class="j-prod"><strong>فادج شوكليت</strong><span>80 EGP • ★ 4.9</span></div>
+          <button class="add" data-name="فادج شوكليت" data-price="80" aria-label="ضيف فادج شوكليت">+</button>
+        </div>
+      </div>
+      <div class="j-visual">
+        <div class="j-glow g2" aria-hidden="true"></div>
+        <div class="ck-stage" aria-hidden="true">
+          <img class="ck-band ck-b1-board" src="./cafe-hero/ck-b1-board.png" alt="">
+          <img class="ck-band ck-b2-base"  src="./cafe-hero/ck-b2-base.png"  alt="">
+          <img class="ck-band ck-b3-mid"   src="./cafe-hero/ck-b3-mid.png"   alt="">
+          <img class="ck-band ck-b4-dome"  src="./cafe-hero/ck-b4-dome.png"  alt="">
+          <img class="ck-band ck-b5-deco"  src="./cafe-hero/ck-b5-deco.png"  alt="">
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== المشهد 3: الآيس كوفي — الفيديو بيتحرك بالأسكرول (قدام لما تنزل / لورا لما تطلع) ===== -->
+    <div class="j-stage s3" data-s="3">
+      <video class="j-scrub-film" aria-hidden="true" data-scrub="iced" src="./hero-iced-splash.mp4" muted playsinline preload="auto"></video>
+      <div class="j-copy">
+        <span class="hv-badge">★ الأكثر طلبًا 🔥</span>
+        <h2 class="jt-title">آيس سبانش <em>لاتيه</em></h2>
+        <p>الاسبريسو والتلج واللبن والرشة الأخيرة — اسكرول بالراحة وشوف المشروب بيتعمل حركة حركة قدامك.. وجرّب ترجع لفوق هتلاقيه بيرجع لورا!</p>
+        <div class="j-chip-product">
+          <div class="j-prod"><strong>آيس سبانش لاتيه</strong><span>70 EGP • ★ 4.9</span></div>
+          <button class="add" data-name="آيس سبانش لاتيه" data-price="70" aria-label="ضيف آيس سبانش لاتيه">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== المشهد 4: المنيو ===== -->
+    <div class="j-stage s4" data-s="4">
+      <div class="jt-head">
+        <span class="hv-badge">★ جاهز للطلب</span>
+        <h2 class="jt-title">اختار <em>مزاجك</em></h2>
+        <p>تلاتة من أكثر حاجة بيتطلبها الناس عندنا — دوس + وهتجمعلك الأوردر وتبعته واتساب على طول.</p>
+      </div>
+      <div class="j-cards">
+        <article class="hv-card"><img src="./cafe-hero/cup.png" alt="آيس سبانش لاتيه"><div><strong>آيس سبانش لاتيه</strong><span data-basha-price="آيس سبانش لاتيه">—</span></div><button class="add" data-name="آيس سبانش لاتيه" data-price="70" aria-label="ضيف آيس سبانش لاتيه">+</button></article>
+        <article class="hv-card"><img src="./cafe-hero/cup.png" alt="فرابيه بيستاشيو"><div><strong>فرابيه بيستاشيو</strong><span data-basha-price="فرابيه بيستاشيو">—</span></div><button class="add" data-name="فرابيه بيستاشيو" data-price="85" aria-label="ضيف فرابيه بيستاشيو">+</button></article>
+        <article class="hv-card"><img src="./cafe-hero/cup.png" alt="وافل لوتس"><div><strong>وافل لوتس</strong><span data-basha-price="وافل لوتس">—</span></div><button class="add" data-name="وافل لوتس" data-price="80" aria-label="ضيف وافل لوتس">+</button></article>
+      </div>
+      <div class="j-cta">
+        <a class="hv-btn solid" href="#menu">شوف المنيو كله</a>
+        <a class="hv-btn outline" href="https://wa.me/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> اطلب واتساب</a>
+      </div>
+      <div class="j-hint">كمّل نازل للمنيو
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 4v16m0 0l-6-6m6 6l6-6"/></svg>
+      </div>
+    </div>
+
+    <!-- ريل التقدم الجانبي -->
+    <div class="j-rail" aria-hidden="true">
+      <div class="j-line"><i id="jRail"></i>
+        <div class="j-dots">
+          <b class="on" data-l="القهوة التركي"></b>
+          <b data-l="الكيك"></b>
+          <b data-l="الآيس كوفي"></b>
+          <b data-l="المنيو"></b>
+        </div>
+      </div>
+      <span class="j-pct" id="jPctRail">0%</span>
+    </div>
+  </div>
+
+  <div class="marquee"><div class="marquee-track">
+    <span>قهوة تركي •</span><span>اسبريسو •</span><span>فرابيه •</span><span>آيس كوفي •</span><span>سموزي •</span><span>ميلك شيك •</span><span>ديزرت •</span><span>بن توليفات •</span>
+    <span>قهوة تركي •</span><span>اسبريسو •</span><span>فرابيه •</span><span>آيس كوفي •</span><span>سموزي •</span><span>ميلك شيك •</span><span>ديزرت •</span><span>بن توليفات •</span>
+  </div></div>
+</section>
+
+<section id="cats" class="cats-strip">
+  <button class="cat-pill active" data-cat="all">الكل</button>
+  <button class="cat-pill" data-cat="hot">قهوة سخنة</button>
+  <button class="cat-pill" data-cat="espresso">قهوة اسبيشيال</button>
+  <button class="cat-pill" data-cat="ice">آيس كوفي</button>
+  <button class="cat-pill" data-cat="frappe">فرابيه</button>
+  <button class="cat-pill" data-cat="cocktail">كوكتيل وصودا</button>
+  <button class="cat-pill" data-cat="juice">عصاير فريش</button>
+  <button class="cat-pill" data-cat="shake">ميلك شيك</button>
+  <button class="cat-pill" data-cat="smoothie">سموزي</button>
+  <button class="cat-pill" data-cat="dessert">ديزرت</button>
+  <button class="cat-pill" data-cat="soft">سوفت درينك</button>
+  <button class="cat-pill" data-cat="beans">البن والتوليفات</button>
+</section>
+
+<section id="menu" class="menu-section">
+  <div class="section-head">
+    <span class="kicker">— المنيو —</span>
+    <h2>اختار مزاجك من منيو الباشا</h2>
+    <p>دوس + جنب أي صنف يجمعلك الأوردر وتبعته واتساب .. ولا دوّر بالاسم من هنا</p>
+    <div class="search-bar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><label for="search" class="sr-only">ابحث في المنيو</label><input id="search" placeholder="دوّر على .. فرابيه لوتس، مانجو، تراميسو ..."></div>
+    <span id="searchCount" class="search-count"></span>
+  </div>
+
+  <!-- سبورة عروض الباشا -->
+  <div class="chalk-wrap">
+    <div class="chalkboard" id="chalkboard">
+      <div class="b-head"><h3 id="chTitle">عرض الأسبوع</h3><span class="day" id="chDay">وفّر ٣٠ ج</span></div>
+      <div class="b-items" id="chItems"></div>
+      <div class="b-tools"><button id="chNext" class="ch-btn">🧽 شوف اللي بعده</button></div>
+      <div class="eraser"></div>
+    </div>
+  </div>
+
+  <!-- أرفف المنيو الكاملة -->
+  <div class="shelves" id="shelves"></div>
+  <p id="noResults" class="no-results">مفيش نتيجة .. جرّب كلمة تانية</p>
+</section>
+
+<section id="about" class="about">
+  <div class="about-inner">
+    <div class="about-img">
+      <div class="cup-showcase" id="cupShowcase">
+        <div class="cs-glow" aria-hidden="true"></div>
+        <img class="cs-cup" src="./cafe-hero/cupCoffee-tight.png" alt="فنجان قهوة بن عبدو باشا">
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="kicker">— حكاية الباشا —</span>
+      <h2>كوباية عليها الباشا .. <br>وطعم يخليك ترجع</h2>
+      <p>بن عبدو باشا مش مجرد كافيه، دي قعدة مزاج. بنعمل القهوة التركي والاسبريسو بحبوب متحمصة صح، وبنظبط الآيس كوفي والفرابيه بوصفاتنا الخاصة. والقعدة عندنا خضرا ومريحة زي ما شفت في الصورة — ترابيزة خشب، زرع أخضر، وكوبايتين تلج يعدلوا اليوم.</p>
+      <ul class="feats">
+        <li><i class="fa-solid fa-fire"></i> تحميص يومي للبن</li>
+        <li><i class="fa-solid fa-snowflake"></i> آيس كوفي وفرابيه مميزين</li>
+        <li><i class="fa-solid fa-cake-candles"></i> ديزرت طازة كل يوم</li>
+        <li><i class="fa-solid fa-wifi"></i> واي فاي + قعدة مريحة</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="gallery">
+  <div class="section-head"><span class="kicker">— الأجواء —</span><h2>عيش جو الباشا</h2></div>
+  <div class="gal-grid">
+    <div class="g-card g1"><i class="fa-solid fa-whiskey-glass"></i><span>آيس لاتيه</span></div>
+    <div class="g-card g2"><i class="fa-solid fa-blender"></i><span>سموزي مانجو</span></div>
+    <div class="g-card g3"><i class="fa-solid fa-mug-saucer"></i><span>قهوة تركي</span></div>
+    <div class="g-card g4"><i class="fa-solid fa-ice-cream"></i><span>ميلك شيك لوتس</span></div>
+    <div class="g-card g5"><i class="fa-solid fa-cake-candles"></i><span>ديزرت الباشا</span></div>
+    <div class="g-card g6"><i class="fa-solid fa-seedling"></i><span>قعدة تشرح النفس</span></div>
+  </div>
+</section>
+
+<section id="visit" class="visit">
+  <div class="visit-inner">
+    <div><span class="kicker">— مستنيينك —</span><h2>فروعنا ومواعيدنا</h2>
+    <p><i class="fa-solid fa-location-dot"></i> القاهرة / الجيزة — ابعتلنا واتساب نبعتلك اللوكيشن</p>
+    <p><i class="fa-solid fa-clock"></i> يومياً من 8 صباحاً لـ 2 بعد نص الليل</p>
+    <p><i class="fa-solid fa-phone"></i> <span dir="ltr" data-phone>0100 000 0000</span></p>
+    <div class="hero-cta"><a class="btn-gold big" href="https://wa.me/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> اطلب واتساب</a><a class="btn-ghost big" href="tel:01000000000"><i class="fa-solid fa-phone"></i> كلمنا</a></div>
+    </div>
+    <div class="hours-card"><h3>الأكثر طلباً 🔥</h3><ol><li data-basha-li="فرابيه بيستاشيو"></li><li data-basha-li="آيس سبانش لاتيه"></li><li data-basha-li="موز باللبن"></li><li data-basha-li="وافل لوتس"></li><li data-basha-li="قهوة تركي"></li></ol></div>
+  </div>
+</section>
+
+<footer><div class="foot-inner"><div class="logo"><div class="logo-mark">B</div><div class="logo-text"><strong>BON ABDO BASHA</strong><span>بن عبدو باشا • COFFEE SHOP</span></div></div><p>اتعمل بحب للمزاج المصري © 2026</p><div class="socials"><i class="fa-brands fa-facebook" role="img" aria-label="فيسبوك"></i><i class="fa-brands fa-instagram" role="img" aria-label="إنستجرام"></i><i class="fa-brands fa-tiktok" role="img" aria-label="تيك توك"></i><i class="fa-brands fa-whatsapp" role="img" aria-label="واتساب"></i></div></div></footer>
+
+<a id="waFloat" href="https://wa.me/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i></a>
+
+<div id="cartDrawer">
+  <div class="ticket" id="ticket">
+    <div class="tk-top">
+      <div class="tk-brand">
+        <span class="tk-mark">B</span>
+        <div><strong>بن عبدو باشا</strong><em>BON ABDO BASHA • COFFEE SHOP</em></div>
+      </div>
+      <button id="closeCart" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="tk-meta">
+      <span id="tkOrderNo">أوردر رقم ١</span>
+      <span id="tkTime">—</span>
+    </div>
+    <div id="cartItems" class="tk-items"></div>
+    <div class="tk-total"><span>الإجمالي</span><strong id="cartTotal">0 ج</strong></div>
+    <div class="tk-actions">
+      <button id="sendWA" class="btn-gold big">ابعت الأوردر واتساب <i class="fa-brands fa-whatsapp"></i></button>
+      <button id="clearCart" class="btn-ghost">امسح الكل</button>
+    </div>
+    <div class="tk-stamp" aria-hidden="true">بن عبدو باشا<em>تم الطلب</em></div>
+  </div>
+</div>
+<div id="overlay"></div>
+
+<script src="./gsap.min.js"></script>
+<script src="./ScrollTrigger.min.js"></script>
+<script src="./lenis.min.js"></script>
+<script src="./config.js"></script>
+<script src="./menu-images.js"></script>
+<script src="script.js"></script>
+<script src="./hero-journey.js"></script>
+<script src="./cine-titles.js"></script>
+</body>
+</html>

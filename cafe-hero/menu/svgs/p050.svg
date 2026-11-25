@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice"><defs>
+<linearGradient id="bg50" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#123f30"/><stop offset="1" stop-color="#071f18"/></linearGradient>
+<radialGradient id="gl50" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#d9a441" stop-opacity=".28"/><stop offset="1" stop-color="#d9a441" stop-opacity="0"/></radialGradient>
+<linearGradient id="liq50" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#977a67"/><stop offset="1" stop-color="#5a3820"/></linearGradient>
+</defs>
+<rect width="400" height="300" fill="url(#bg50)"/>
+<rect width="400" height="300" fill="url(#gl50)"/>
+<ellipse cx="200" cy="258" rx="95" ry="13" fill="#000" opacity=".35"/>
+<clipPath id="cup50"><path d="M150 122 L163 236 Q164 244 176 244 L224 244 Q236 244 237 236 L250 122 Q200 114 150 122 Z"/></clipPath>
+<g clip-path="url(#cup50)">
+  <rect x="145" y="140" width="110" height="110" fill="#6B4226"/>
+  <rect x="145" y="128" width="110" height="26" fill="#977a67" opacity=".85"/>
+  <rect x="150" y="150" width="26" height="90" rx="10" fill="#ffffff" opacity=".18"/>
+  <rect x="196" y="150" width="20" height="88" rx="10" fill="#ffffff" opacity=".22"/>
+  <rect x="232" y="150" width="16" height="90" rx="8" fill="#ffffff" opacity=".14"/>
+</g>
+<path d="M150 122 L163 236 Q164 244 176 244 L224 244 Q236 244 237 236 L250 122 Q200 114 150 122 Z" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="2.5"/>
+<ellipse cx="200" cy="122" rx="50" ry="9" fill="none" stroke="#ffffff" stroke-opacity=".5" stroke-width="2.5"/>
+
+<rect x="216" y="52" width="10" height="72" rx="5" fill="#2f241a" transform="rotate(10 221 88)"/>
+<path d="M152 118 Q158 102 170 108 Q176 94 190 102 Q200 88 210 100 Q224 92 228 106 Q240 104 242 118 Q200 110 152 118 Z" fill="#F5EBE0"/>
+<ellipse cx="200" cy="248" rx="58" ry="7" fill="#d9a441" opacity=".5"/></svg>

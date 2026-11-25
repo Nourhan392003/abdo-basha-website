@@ -1,0 +1,224 @@
+/* ============ HERO JOURNEY — رحلة اسكرول عمودية بـ 4 مشاهد ============
+   كل مشهد بيبني بالأسكرول: تركي → كيك → آيس كوفي → المنيو.
+   الأفلام بتتحرك كخلفية أجواء، والبناء نفسه SVG/PNG مربوط بالـ scrub. */
+
+.journey{
+  --espresso:#2C1810; --gold-h:#d9a441; --gold-h2:#e9c46a;
+  position:relative; overflow:hidden;
+  height:calc(100svh - var(--nav-h) - 8px); min-height:540px;
+  background:#160c05; color:#F5EBE0;
+  font-family:'Cairo',sans-serif;
+}
+
+/* ---------- أفلام الأجواء ---------- */
+.j-film{position:absolute;inset:0;z-index:0}
+.j-film video{width:100%;height:100%;object-fit:cover;object-position:center 38%;filter:brightness(.5) saturate(.92);opacity:0;transition:opacity .9s ease}
+.j-film video.on{opacity:.4}
+/* فيلم المشهد الأول: مالي الشاشة — الكوباية مركّزة أفقيًا */
+.j-lead-film{
+  position:absolute;inset:0;z-index:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 45%;
+  opacity:0;transition:opacity .9s ease;will-change:transform;
+  filter:brightness(.8) saturate(.96);
+}
+.j-lead-film.on{opacity:1}
+.j-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(16,9,4,.8) 0%,rgba(16,9,4,.45) 32%,rgba(16,9,4,.08) 58%,rgba(16,9,4,.42) 100%),
+             linear-gradient(180deg,rgba(16,9,4,.6) 0%,rgba(16,9,4,.18) 34%,rgba(16,9,4,.3) 62%,rgba(16,9,4,.65) 100%)}
+
+/* ---------- واجهة التقدم ---------- */
+.j-topbar{position:absolute;top:0;right:0;left:0;height:3px;z-index:7;background:rgba(245,235,224,.1)}
+.j-topbar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold-h),var(--gold-h2))}
+.j-chip{
+  position:absolute;top:calc(var(--nav-h) + 4px);left:50%;translate:-50% 0;z-index:7;
+  background:rgba(20,10,4,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(233,196,106,.3);color:#F5EBE0;
+  font-size:12px;font-weight:700;padding:7px 18px;border-radius:999px;white-space:nowrap;
+}
+.j-chip b{color:var(--gold-h2);font-variant-numeric:tabular-nums}
+
+.j-rail{
+  position:absolute;left:clamp(10px,1.6vw,24px);top:50%;translate:0 -50%;z-index:6;
+  display:flex;flex-direction:column;align-items:center;gap:10px;height:min(46vmin,360px);
+}
+.j-line{position:relative;width:2px;flex:1;background:rgba(245,235,224,.16);border-radius:2px}
+.j-line>i{position:absolute;top:0;left:0;right:0;height:0%;border-radius:2px;
+  background:linear-gradient(180deg,var(--gold-h),var(--gold-h2))}
+.j-dots{position:absolute;inset:0}
+.j-dots b{
+  position:absolute;left:50%;translate:-50% -50%;width:10px;height:10px;border-radius:50%;
+  background:#160c05;border:2px solid rgba(245,235,224,.35);transition:.3s;
+}
+.j-dots b:nth-child(1){top:0}.j-dots b:nth-child(2){top:33.3%}
+.j-dots b:nth-child(3){top:66.6%}.j-dots b:nth-child(4){top:100%}
+.j-dots b.on{background:var(--gold-h);border-color:var(--gold-h);box-shadow:0 0 12px rgba(217,164,65,.65)}
+.j-dots b.on::after{
+  content:attr(data-l);position:absolute;left:16px;top:50%;translate:0 -50%;
+  font-size:11.5px;font-weight:800;color:var(--gold-h2);white-space:nowrap;letter-spacing:.4px;
+}
+.j-pct{font-size:12px;font-weight:800;color:rgba(245,235,224,.65);font-variant-numeric:tabular-nums}
+
+/* ---------- المشاهد ---------- */
+.j-stage{
+  position:absolute;inset:0;z-index:2;
+  display:grid;grid-template-columns:minmax(300px,430px) 1fr;
+  align-items:center;gap:clamp(10px,2vw,24px);
+  padding:calc(var(--nav-h) + 34px) clamp(18px,4vw,52px) 26px;
+  pointer-events:none;will-change:transform,opacity;
+}
+.j-stage.live{pointer-events:auto}
+
+/* عمود الكلام */
+.j-copy{display:flex;flex-direction:column;align-items:flex-start;gap:13px;max-width:440px;z-index:3;height:max-content;align-self:center}
+.jt-title{font-family:'Aref Ruqaa',serif;font-size:clamp(30px,4.4vw,54px);line-height:1.4;font-weight:700}
+.jt-title em{font-style:normal;color:var(--gold-h2)}
+.j-copy p{color:rgba(245,235,224,.78);font-size:clamp(13.5px,1.6vw,15.5px);line-height:1.95;max-width:400px}
+.j-chip-product{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  background:rgba(24,14,8,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(233,196,106,.35);border-radius:16px;padding:11px 12px 11px 16px;
+  width:min(330px,100%);margin-top:6px;
+}
+.j-prod strong{display:block;font-size:15px;line-height:1.5}
+.j-prod span{font-size:12.5px;color:var(--gold-h2);font-weight:700}
+
+/* عمود المشهد */
+.j-visual{position:relative;height:100%;min-height:340px;display:flex;align-items:center;justify-content:center}
+.j-glow{position:absolute;width:min(54vmin,500px);aspect-ratio:1;border-radius:50%;filter:blur(12px);pointer-events:none}
+.g1{background:radial-gradient(circle,rgba(217,164,65,.36),transparent 65%)}
+.g2{background:radial-gradient(circle,rgba(150,86,42,.5),transparent 66%)}
+.g3{background:radial-gradient(circle,rgba(110,150,140,.3),transparent 64%)}
+.g4{background:radial-gradient(circle,rgba(217,164,65,.42),transparent 60%)}
+
+/* ===== مشهد 1: قهوة التركي — الفيديو مالي الشاشة، الكلام فوقه بظل (بدون صندوق) ===== */
+.j-stage.s1{grid-template-columns:1fr;align-content:center}
+.s1 .j-copy{max-width:520px}
+/* مشاهد الفيديو (1 و 3): الكلام مباشرة على الفيديو بظل قوي */
+.s1 .j-copy,.s3 .j-copy{
+  gap:12px;padding:0;height:max-content;align-self:center;align-items:flex-start;
+  justify-self:end;text-align:right;
+}
+.s1 .j-copy .jt-title,.s3 .j-copy .jt-title,
+.s1 .j-copy p,.s3 .j-copy p{
+  text-shadow:0 2px 12px rgba(0,0,0,.9), 0 1px 4px rgba(0,0,0,.95);
+}
+.s1 .j-copy .hv-badge,.s3 .j-copy .hv-badge{
+  box-shadow:0 8px 22px rgba(0,0,0,.55);
+}
+
+/* ===== مشهد 2: الكيك بتتركب — شرايح من صورة المنتج نفسها (تراص مظبوط) ===== */
+.ck-stage{position:relative;width:min(44vmin,410px);aspect-ratio:925/1091}
+.ck-band{
+  position:absolute;inset:0;width:100%;height:100%;display:block;
+  will-change:transform,opacity;
+  filter:drop-shadow(0 16px 22px rgba(0,0,0,.4));
+}
+.ck-b1-board{filter:drop-shadow(0 24px 30px rgba(0,0,0,.5))}
+.s2.live .ck-stage{animation:ckFloat 6s ease-in-out infinite}
+@keyframes ckFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
+
+/* ===== مشهد 3: الآيس كوفي — الفيديو بيتحرك بالأسكرول (مالي الشاشة) ===== */
+.j-stage.s3{grid-template-columns:1fr;align-content:center}
+.s3 .j-copy{max-width:480px}
+.j-scrub-film{
+  position:absolute;inset:0;z-index:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 45%;
+  opacity:0;transition:opacity .9s ease;will-change:transform;
+  filter:brightness(.8) saturate(.96);
+}
+.j-scrub-film.on{opacity:1}
+
+/* ===== مشهد 4: المنيو ===== */
+.j-stage.s4{grid-template-columns:1fr;justify-items:center;text-align:center;align-content:center;gap:0}
+.s4 .jt-head{display:flex;flex-direction:column;align-items:center;gap:12px}
+.s4 .jt-head p{color:rgba(245,235,224,.75);max-width:520px;line-height:1.9}
+.j-cards{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:26px 0 8px}
+.j-cards .hv-card{
+  pointer-events:auto;
+  display:flex;align-items:center;gap:11px;
+  background:rgba(24,14,8,.62);border:1px solid rgba(233,196,106,.3);
+  border-radius:16px;padding:9px 15px 9px 9px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 12px 28px rgba(0,0,0,.32);
+}
+.j-cards .hv-card img{
+  width:54px;height:66px;object-fit:contain;flex:0 0 auto;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.4));
+}
+.j-cards .hv-card strong{display:block;font-size:14px;color:#F5EBE0;white-space:nowrap}
+.j-cards .hv-card .prc,.j-cards .hv-card span{font-size:12.5px;color:var(--gold2);font-weight:800}
+.j-cards .hv-card .add{width:38px;height:38px;flex:0 0 38px;margin-inline-start:6px}
+.j-cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.j-hint{margin-top:20px;font-size:12.5px;font-weight:700;color:rgba(245,235,224,.55);letter-spacing:.6px;display:flex;align-items:center;gap:8px}
+.j-hint svg{animation:jHintBob 1.6s ease-in-out infinite}
+@keyframes jHintBob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1023px){
+  .j-stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;gap:4px;padding-top:calc(var(--nav-h) + 26px)}
+  /* مشاهد الفيديو (1 و 3): صف واحد بلا تمدد — الصندوق بحجم محتواه */
+  .j-stage.s1,.j-stage.s3{grid-template-rows:max-content;grid-auto-rows:max-content;align-content:center;align-items:center}
+  .j-stage.s1 .j-copy,.j-stage.s3 .j-copy{align-self:center;justify-self:center;height:max-content;min-height:0}
+  .j-copy{max-width:100%}
+  .j-copy p{max-width:100%}
+  .j-visual{min-height:300px}
+  .j-rail{left:8px;height:min(40vmin,300px)}
+  .j-dots b.on::after{display:none}
+  .ck-stage{width:min(80%,280px)}
+}
+@media(max-width:640px){
+  .journey{min-height:560px}
+  .j-stage{padding-inline:14px;padding-top:calc(var(--nav-h) + 10px);padding-bottom:16px}
+  /* المشهد 1 (فيديو) + 3 (فيديو): الكلام في النص بلا صندوق فاضي */
+  .j-stage.s1,.j-stage.s3{grid-template-rows:max-content;grid-template-columns:1fr;place-items:center;align-content:center;gap:0}
+  .j-stage.s1 .j-copy,.j-stage.s3 .j-copy{margin:0;flex:0 0 auto;align-self:center;height:max-content;width:100%;max-width:100%}
+  .j-stage.s1 .j-visual,.j-stage.s3 .j-visual{display:none}
+  /* الكلام: مباشرة على الفيديو بظل قوي — تظليل أقوى من تحت على الموبايل */
+  .j-scrim{background:
+    linear-gradient(180deg,rgba(16,9,4,.72) 0%,rgba(16,9,4,.45) 28%,rgba(16,9,4,.62) 52%,rgba(16,9,4,.94) 100%)}
+  .s1 .j-copy,.s3 .j-copy{
+    max-width:100%;gap:10px;align-self:center;align-items:flex-start;text-align:right;
+    padding:0;height:max-content;min-height:0;
+  }
+  .s1 .j-copy .jt-title,.s3 .j-copy .jt-title{width:100%}
+  .s1 .j-copy p,.s3 .j-copy p{width:100%}
+  .jt-title{font-size:clamp(23px,7.2vw,30px);line-height:1.45}
+  .j-copy p{font-size:13.5px;line-height:1.8}
+  .hv-badge{font-size:11.5px;padding:6px 13px}
+  .j-chip{position:absolute;top:calc(var(--nav-h) + 4px);left:50%;translate:-50% 0;margin:0;
+    font-size:11px;padding:6px 14px;background:rgba(10,6,3,.75);border-color:rgba(233,196,106,.4);z-index:8}
+  .j-topbar{display:block}
+  .j-rail{display:none}
+  .j-visual{min-height:0}
+  .j-lead-film,.j-scrub-film{object-position:center 42%}
+  .ck-stage{width:min(70vw,290px);aspect-ratio:925/1091}
+  .j-cards{gap:8px;margin:20px 0 6px}
+  .j-cards .hv-card{padding:7px 11px 7px 7px}
+  .j-cards .hv-card img{width:46px;height:56px}
+  .j-cards .hv-card strong{font-size:12.5px}
+  .j-cards .hv-card span{font-size:11px}
+  .j-chip-product{width:100%;margin-top:2px}
+  .j-cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
+  .j-cta .hv-btn{flex:1 1 140px;padding:12px 16px;font-size:14px}
+  .j-hint{font-size:11.5px;margin-top:12px}
+  .s4 .jt-head{gap:8px}
+  .s4 .jt-head p{font-size:13px}
+}
+@media(max-height:540px) and (orientation:landscape){
+  .journey{height:auto;min-height:480px}
+  .j-stage{padding-top:calc(var(--nav-h) + 10px)}
+  .j-visual{min-height:220px}
+}
+
+/* ---------- وضع تقليل الحركة: كل المشاهد ورا بعض بحالتها النهائية ---------- */
+.journey.reduced{height:auto;min-height:0}
+.journey.reduced .j-stage{position:relative;inset:auto;min-height:78svh;opacity:1!important;transform:none!important;pointer-events:auto}
+.journey.reduced .j-rail,.journey.reduced .j-topbar,.journey.reduced .j-chip{display:none}
+.journey.reduced .j-film{display:none}
+.journey.reduced .j-lead-film{opacity:1} /* فريم الفيلم يفضل ظاهر واقف على أول فريم */
+.journey.reduced .h-final{position:relative;inset:auto;margin-top:10px}
+.journey.reduced .h-wrap{display:none}
+
+@media(prefers-reduced-motion:reduce){
+  .journey *,.journey *::before,.journey *::after{animation:none!important;transition-duration:.01ms!important}
+}
