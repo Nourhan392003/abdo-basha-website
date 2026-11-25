@@ -55,18 +55,26 @@
     });
   }
 
-  /* فيلم الآيس كوفي بيتحرك بالأسكرول: وقت الفيديو بيلحق بمكان السكرول بتنعيم */
-  const ICE_IN = 1.5, ICE_OUT = 4.4;   /* المدى الحلو من الفيديو: أوسع كادر + رشة اللبن */
+  /* فيلم الآيس كوفي: بيتحرك بالأسكرول، ولو المستخدم واقف بيدور لوحده بهدوء */
+  const ICE_IN = 1.2, ICE_OUT = 4.6;   /* المدى: كوباية كاملة → رشة اللبن */
   const iceV = journey.querySelector(".j-scrub-film");
   let iceTarget = ICE_IN, iceCur = ICE_IN, iceActive = false;
+  let iceUserMoved = 0;          /* آخر وقت المستخدم سكرول جوه المشهد */
   function setIceActive(on){
     if(iceActive === on) return;
     iceActive = on;
     if(iceV) iceV.classList.toggle("on", on);
+    if(on) iceUserMoved = 0;     /* نبدأ العد من جديد كل ما يدخل المشهد */
   }
-  gsap.ticker.add(()=>{
+  gsap.ticker.add((time)=>{
     if(!iceActive || !iceV || !iceV.duration) return;
-    iceCur += (iceTarget - iceCur) * .22;
+    /* لو المستخدم مش بيسكرول من 1.2 ثانية، ندوّر الفيديو بهدوء لوحده */
+    const idle = (performance.now() - iceUserMoved) > 1200;
+    if(idle){
+      iceTarget += 0.006;                                   /* سرعة بطيئة ناعمة */
+      if(iceTarget > ICE_OUT) iceTarget = ICE_IN;           /* نلف تاني */
+    }
+    iceCur += (iceTarget - iceCur) * .14;
     if(Math.abs(iceTarget - iceCur) < .004) iceCur = iceTarget;
     try{ iceV.currentTime = iceCur; }catch(e){}
   });
@@ -202,6 +210,7 @@
     if(idx===2){
       const sub = Math.min(1, Math.max(0, p*4-2));
       iceTarget = ICE_IN + (ICE_OUT - ICE_IN) * sub;
+      iceUserMoved = performance.now();   /* المستخدم بيسكرول → نوقف الدوران التلقائي */
       setIceActive(true);
     }
     if(idx !== cur){
