@@ -167,12 +167,20 @@
   .ck-stage{width:min(80%,280px)}
 }
 @media(max-width:640px){
-  .journey{min-height:560px}
+  .journey{min-height:600px}
   .j-stage{padding-inline:14px;padding-top:calc(var(--nav-h) + 10px);padding-bottom:16px}
   /* المشهد 1 (فيديو) + 3 (فيديو): الكلام في النص بلا صندوق فاضي */
   .j-stage.s1,.j-stage.s3{grid-template-rows:max-content;grid-template-columns:1fr;place-items:center;align-content:center;gap:0}
   .j-stage.s1 .j-copy,.j-stage.s3 .j-copy{margin:0;flex:0 0 auto;align-self:center;height:max-content;width:100%;max-width:100%}
   .j-stage.s1 .j-visual,.j-stage.s3 .j-visual{display:none}
+  /* الفيديو على الموبايل: يعرض المشهد كامل مع خلفية ممتدة */
+  .j-lead-film,.j-scrub-film{
+    object-fit:contain;
+    background:
+      linear-gradient(180deg, rgba(10,6,3,.9) 0%, rgba(10,6,3,.35) 22%, rgba(10,6,3,.35) 78%, rgba(10,6,3,.92) 100%),
+      radial-gradient(130% 75% at 50% 50%, #2a1a0c 0%, #120a04 55%, #0a0603 100%);
+    object-position:center center;
+  }
   /* الكلام: مباشرة على الفيديو بظل قوي — تظليل أقوى من تحت على الموبايل */
   .j-scrim{background:
     linear-gradient(180deg,rgba(16,9,4,.72) 0%,rgba(16,9,4,.45) 28%,rgba(16,9,4,.62) 52%,rgba(16,9,4,.94) 100%)}
