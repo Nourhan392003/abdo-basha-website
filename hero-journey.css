@@ -127,6 +127,8 @@
   filter:brightness(.8) saturate(.96);
 }
 .j-scrub-film.on{opacity:1}
+/* ضمان: لو مشهد الآيس نشط، الفيديو يظهر */
+.j-stage.s3.live .j-scrub-film{opacity:1}
 
 /* ===== مشهد 4: المنيو ===== */
 .j-stage.s4{grid-template-columns:1fr;justify-items:center;text-align:center;align-content:center;gap:0}
@@ -173,9 +175,23 @@
   .j-stage.s1,.j-stage.s3{grid-template-rows:max-content;grid-template-columns:1fr;place-items:center;align-content:center;gap:0}
   .j-stage.s1 .j-copy,.j-stage.s3 .j-copy{margin:0;flex:0 0 auto;align-self:center;height:max-content;width:100%;max-width:100%}
   .j-stage.s1 .j-visual,.j-stage.s3 .j-visual{display:none}
-  /* الفيديو على الموبايل: مالي الشاشة مع تركيز على المشهد */
-  .j-lead-film{object-fit:cover;object-position:center 42%}
-  .j-scrub-film{object-fit:cover;object-position:center 52%}
+  /* الفيديو على الموبايل: المشهد كامل + نسخة ضبابية مالية الفراغات */
+  .j-lead-film,.j-scrub-film{
+    object-fit:contain;
+    object-position:center center;
+    z-index:1;
+  }
+  /* نسخة الخلفية الضبابية (بنفس الفيديو) مالية الشاشة */
+  .j-video-ambient{
+    position:absolute;inset:0;z-index:0;
+    width:100%;height:100%;
+    object-fit:cover;object-position:center 45%;
+    filter:blur(34px) brightness(.62) saturate(1.25);
+    transform:scale(1.25);
+    opacity:0;transition:opacity .9s ease;
+    pointer-events:none;
+  }
+  .j-video-ambient.on{opacity:1}
   /* الكلام: مباشرة على الفيديو بظل قوي — تظليل أقوى من تحت على الموبايل */
   .j-scrim{background:
     linear-gradient(180deg,rgba(16,9,4,.72) 0%,rgba(16,9,4,.45) 28%,rgba(16,9,4,.62) 52%,rgba(16,9,4,.94) 100%)}

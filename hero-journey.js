@@ -39,6 +39,10 @@
   /* الأفلام: كل فيلم بيتشغل بس لما مشهدها يبقى نشط */
   const films = {};
   journey.querySelectorAll("video[data-film]").forEach(v=> films[v.dataset.film] = v);
+  /* النسخ الضبابية (خلفية مالية الفراغات على الموبايل) */
+  const ambients = {};
+  journey.querySelectorAll("video[data-amb]").forEach(v=> ambients[v.dataset.amb] = v);
+
   let filmOn = null;
   function driveFilm(name){
     if(filmOn === name) return;
@@ -53,6 +57,13 @@
       }
       else v.pause();
     });
+    /* الخلفية الضبابية: بتظهر وتشتغل مع نفس المشهد */
+    Object.entries(ambients).forEach(([k,v])=>{
+      if(!v) return;
+      const show = (k === name);
+      v.classList.toggle("on", show);
+      if(show) v.play().catch(()=>{}); else v.pause();
+    });
   }
 
   /* فيلم الآيس كوفي: بيتحرك بالأسكرول، ولو المستخدم واقف بيدور لوحده بهدوء */
@@ -65,6 +76,12 @@
     if(iceV){
       iceV.classList.toggle("on", on);
       iceV.style.opacity = on ? "" : "0";   /* ضمان مباشر كمان */
+    }
+    /* الخلفية الضبابية للآيس تظهر معاه */
+    const ambIce = ambients["iced"];
+    if(ambIce){
+      ambIce.classList.toggle("on", on);
+      if(on) ambIce.play().catch(()=>{}); else ambIce.pause();
     }
     if(iceActive === on) return;
     iceActive = on;
