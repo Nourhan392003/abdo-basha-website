@@ -61,9 +61,13 @@
   let iceTarget = ICE_IN, iceCur = ICE_IN, iceActive = false;
   let iceUserMoved = 0;          /* آخر وقت المستخدم سكرول جوه المشهد */
   function setIceActive(on){
+    on = !!on;
+    if(iceV){
+      iceV.classList.toggle("on", on);
+      iceV.style.opacity = on ? "" : "0";   /* ضمان مباشر كمان */
+    }
     if(iceActive === on) return;
     iceActive = on;
-    if(iceV) iceV.classList.toggle("on", on);
     if(on) iceUserMoved = 0;     /* نبدأ العد من جديد كل ما يدخل المشهد */
   }
   gsap.ticker.add((time)=>{
@@ -207,7 +211,8 @@
     jPct.textContent = pc; jPctRail.textContent = pc;
     const idx = Math.min(3, Math.floor(p*4));
     /* فيلم الآيس: بيتحرك مع السكرول جوه مشهده */
-    if(idx===2){
+    const onIce = (idx === 2);
+    if(onIce){
       const sub = Math.min(1, Math.max(0, p*4-2));
       iceTarget = ICE_IN + (ICE_OUT - ICE_IN) * sub;
       iceUserMoved = performance.now();   /* المستخدم بيسكرول → نوقف الدوران التلقائي */
@@ -218,10 +223,10 @@
       stages.forEach((s,i)=> s.classList.toggle("live", i===idx));
       dots.forEach((d,i)=> d.classList.toggle("on", i<=idx));
       jName.textContent = NAMES[idx];
-      const f = FILMS[idx] || "";
-      driveFilm(f || null);
-      if(idx !== 2) setIceActive(false);
+      driveFilm(FILMS[idx] || null);
     }
+    /* نضمن إن حالة فيلم الآيس دايمًا صح */
+    setIceActive(onIce);
   }
   paint(0);
   /* تشغيل فيلم المشهد الأول صراحةً (لأن العناوين بتظهر بالأسكرول مش بتلقائي) */
