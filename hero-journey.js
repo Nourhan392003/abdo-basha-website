@@ -66,49 +66,37 @@
     });
   }
 
-  /* فيلم الآيس كوفي: بيتحرك بالأسكرول، ولو المستخدم واقف بيدور لوحده بهدوء */
-  const ICE_IN = 1.2, ICE_OUT = 4.6;   /* المدى: كوباية كاملة → رشة اللبن */
+  /* فيلم الآيس كوفي: يشتغل تلقائي ويلوب زي فيلم القهوة */
   const iceV = journey.querySelector(".j-scrub-film");
-  let iceTarget = ICE_IN, iceCur = ICE_IN, iceActive = false;
-  let iceUserMoved = 0;          /* آخر وقت المستخدم سكرول جوه المشهد */
+  /* نمسح أي GSAP inline style اتسجّل عليه (بيتعارض مع الظهور) */
+  if(window.gsap && iceV) gsap.set(iceV, {clearProps:"all"});
+  let iceActive = false;
   function setIceActive(on){
     on = !!on;
     if(iceV){
       iceV.classList.toggle("on", on);
-      iceV.style.opacity = on ? "" : "0";   /* ضمان مباشر كمان */
+      /* نضبط الظهور مباشرة (inline) لتجاوز أي تعارض CSS */
+      iceV.style.opacity = on ? "1" : "0";
+      iceV.style.visibility = on ? "visible" : "hidden";
+      if(on){ if(iceV.ended) iceV.currentTime = 0; iceV.play().catch(()=>{}); }
+      else iceV.pause();
     }
     /* الخلفية الضبابية للآيس تظهر معاه */
     const ambIce = ambients["iced"];
     if(ambIce){
       ambIce.classList.toggle("on", on);
+      ambIce.style.opacity = on ? "1" : "0";
       if(on) ambIce.play().catch(()=>{}); else ambIce.pause();
     }
-    if(iceActive === on) return;
     iceActive = on;
-    if(on) iceUserMoved = 0;     /* نبدأ العد من جديد كل ما يدخل المشهد */
   }
-  gsap.ticker.add((time)=>{
-    if(!iceActive || !iceV || !iceV.duration) return;
-    /* لو المستخدم مش بيسكرول من 1.2 ثانية، ندوّر الفيديو بهدوء لوحده */
-    const idle = (performance.now() - iceUserMoved) > 1200;
-    if(idle){
-      iceTarget += 0.006;                                   /* سرعة بطيئة ناعمة */
-      if(iceTarget > ICE_OUT) iceTarget = ICE_IN;           /* نلف تاني */
-    }
-    iceCur += (iceTarget - iceCur) * .14;
-    if(Math.abs(iceTarget - iceCur) < .004) iceCur = iceTarget;
-    try{ iceV.currentTime = iceCur; }catch(e){}
-  });
-  window.__iceDebug = () => ({target: +iceTarget.toFixed(2), cur: +iceCur.toFixed(2), active: iceActive, dur: iceV && +iceV.duration.toFixed(2)});
+  window.__iceDebug = () => ({active: iceActive, paused: iceV && iceV.paused, ct: iceV && +iceV.currentTime.toFixed(2), dur: iceV && +iceV.duration.toFixed(2)});
 
   /* الحالات النهائية — لوضع تقليل الحركة (كل حاجة مكتملة من غير حركة) */
   function applyFinalStates(){
     gsap.set(".ck-band",{y:0,opacity:1,scale:1,rotation:0,autoAlpha:1});
     gsap.set(".s2 .j-visual",{scale:1});
-    if(iceV){
-      iceV.classList.add("on");
-      try{ iceV.currentTime = ICE_IN; }catch(e){}
-    }
+    if(iceV) iceV.classList.add("on");
     gsap.set(".j-chip-product,.s4 .jt-head,.s4 .hv-card,.s4 .j-cta,.s4 .j-hint",{opacity:1,y:0,visibility:"visible"});
   }
 
@@ -170,11 +158,10 @@
     return t;
   }
 
-  /* ===== المشهد 3: الآيس كوفي (0 → 1) — الفيديو بيتحرك بالأسكرول ===== */
+  /* ===== المشهد 3: الآيس كوفي — الفيديو يشتغل تلقائي (مفيش tween على الفيديو) ===== */
   function stageIced(){
     const t = gsap.timeline({defaults:{ease:"power2.out"}});
-    t.fromTo(".s3 .j-scrub-film",{scale:1},{scale:1,duration:.01},0)
-     .to(".s3 .j-chip-product",{autoAlpha:1,y:0,duration:.09},.8);
+    t.to(".s3 .j-chip-product",{autoAlpha:1,y:0,duration:.09},.8);
     return t;
   }
 
@@ -227,22 +214,15 @@
     jFill.style.width = pc; jRailFill.style.height = pc;
     jPct.textContent = pc; jPctRail.textContent = pc;
     const idx = Math.min(3, Math.floor(p*4));
-    /* فيلم الآيس: بيتحرك مع السكرول جوه مشهده */
     const onIce = (idx === 2);
-    if(onIce){
-      const sub = Math.min(1, Math.max(0, p*4-2));
-      iceTarget = ICE_IN + (ICE_OUT - ICE_IN) * sub;
-      iceUserMoved = performance.now();   /* المستخدم بيسكرول → نوقف الدوران التلقائي */
-      setIceActive(true);
-    }
     if(idx !== cur){
       cur = idx;
       stages.forEach((s,i)=> s.classList.toggle("live", i===idx));
       dots.forEach((d,i)=> d.classList.toggle("on", i<=idx));
       jName.textContent = NAMES[idx];
-      driveFilm(FILMS[idx] || null);
     }
-    /* نضمن إن حالة فيلم الآيس دايمًا صح */
+    /* فيلم المشهد 1 (تركي) + فيلم المشهد 3 (آيس) — كل واحد بشغله */
+    driveFilm(FILMS[idx] || null);
     setIceActive(onIce);
   }
   paint(0);

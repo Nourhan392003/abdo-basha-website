@@ -117,18 +117,18 @@
 .s2.live .ck-stage{animation:ckFloat 6s ease-in-out infinite}
 @keyframes ckFloat{0%,100%{translate:0 0}50%{translate:0 -9px}}
 
-/* ===== مشهد 3: الآيس كوفي — الفيديو بيتحرك بالأسكرول (مالي الشاشة) ===== */
+/* ===== مشهد 3: الآيس كوفي — الفيديو يشتغل تلقائي ويلوب زي القهوة ===== */
 .j-stage.s3{grid-template-columns:1fr;align-content:center}
 .s3 .j-copy{max-width:480px}
 .j-scrub-film{
   position:absolute;inset:0;z-index:0;width:100%;height:100%;
-  object-fit:cover;object-position:center 45%;
-  opacity:0;transition:opacity .9s ease;will-change:transform;
-  filter:brightness(.8) saturate(.96);
+  object-fit:cover;object-position:center 50%;
+  filter:brightness(.85) saturate(1);
+  opacity:0;transition:opacity .9s ease;
 }
 .j-scrub-film.on{opacity:1}
-/* ضمان: لو مشهد الآيس نشط، الفيديو يظهر */
-.j-stage.s3.live .j-scrub-film{opacity:1}
+/* ضمان أخير: الفيديو ظاهر لما المشهد نشط */
+#hero-section .j-stage.s3.live .j-scrub-film{opacity:1}
 
 /* ===== مشهد 4: المنيو ===== */
 .j-stage.s4{grid-template-columns:1fr;justify-items:center;text-align:center;align-content:center;gap:0}
